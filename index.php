@@ -1,8 +1,13 @@
 <?php
+date_default_timezone_set("Asia/Kuala_Lumpur");
 error_reporting(E_ALL);
+session_start();
 ini_set('display_errors', 1);
-
 require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/PHPMailer-master/src/PHPMailer.php';
+require __DIR__ . '/PHPMailer-master/src/SMTP.php';
+require __DIR__ . '/PHPMailer-master/src/Exception.php';
+
 
 // constant
 define('PATH_ROOT', __DIR__);
@@ -44,11 +49,6 @@ function classify($handlerString)
 	return implode('', $handlerStringParts);;
 }
 
-function pageNotFound()
-{
-	echo 'page not found';
-	exit;
-} 
 
 // $controller = new \app\controllers\HomeController;
 // $controller->actionIndex();

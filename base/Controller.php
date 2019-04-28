@@ -25,9 +25,33 @@ class Controller
 
 	public function render($viewFile, $data = [])
 	{
+		$leftContent = "";
+		$rightTopContent = "";
 		if ($data) extract($data);
 		$header = require $this->getLayoutPath() . '/header.php';
-		$content = require $this->getViewPath() . '/' . $viewFile . '.php';
+
+		echo "<div class = 'col-md-2'>";	
+
+		$leftContent = require $this->getLayoutPath() . '/left.php';
+		echo "</div>";	
+		echo "<div class = 'col-md-10'>";	
+		$rightTopContent = require $this->getLayoutPath() . '/righttop.php';
+		$content = require $this->getViewPath() . '/' . $viewFile . '.php';	
+		echo "</div>";	
+		
+		$footer = require $this->getLayoutPath() . '/footer.php';
+		return $header . $leftContent . $content . $footer;
+	}
+
+
+	public function renderOneColumn($viewFile, $data = [])
+	{
+		$leftContent = "";
+		if ($data) extract($data);
+		$header = require $this->getLayoutPath() . '/header.php';
+		
+		$content = require $this->getLayoutPath() . '/' . $viewFile . '.php';	
+		
 		$footer = require $this->getLayoutPath() . '/footer.php';
 		return $header . $content . $footer;
 	}
